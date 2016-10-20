@@ -1,5 +1,5 @@
 ## sghh-zip
-How to create a zip archive passing a folder name as a command line parameter
+How to create a zip archive passing a folder name as a command line parameter in Haskell
 
 Even this apparenly easy task involves many complex language constructs
 
