@@ -18,7 +18,7 @@ prepareFiles file = do
 
 main :: IO ()
 main = do
-  [dir]     <- getArgs
+  (dir:_)   <- getArgs
   files     <- map (dir </>) <$> getDirectoryContents dir
   filesOnly <- filterM doesFileExist files
   zipPath   <- parseRelFile "archive.zip"
