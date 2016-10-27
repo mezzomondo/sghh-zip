@@ -8,7 +8,7 @@ Even this apparenly easy task involves many complex language constructs
 Because our "real world" is not their "real world".
 
 ## Code explanation
-*This is a real world problem.* The main difference between Haskell and, say, Python is that in Python you can just read a couple of pages of documentation, and a couple of threads on StackOverflow, and have enough information to achieve a satisfactory result. In Haskell you need to reach the end of a cople of 200 pages manuals and probably something is still out of your hands.
+*This is a real world problem.* The main difference between Haskell and, say, Python is that in Python you can just read a couple of pages of documentation, and a couple of threads on StackOverflow, and have enough information to achieve a satisfactory result. In Haskell you need to reach the end of a couple of 200 pages manuals and probably something is still out of your hands.
 
 So, let's start analysing the main function.
 ```haskell
