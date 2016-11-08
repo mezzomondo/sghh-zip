@@ -48,7 +48,7 @@ can be used to mimic the behaviour of
 ```haskell
 map :: (a -> b) -> [a] -> [b]
 ```
-when we are using structures other that List. The pattern is the same: apply a function to elements that lives inside a structure. So it could be something like:
+when we are using structures other that List. The pattern is the same: apply a function to elements that live inside a structure. So it could be something like:
 ```haskell
 absolutePaths <- fmap (map (dir </>)) (getDirectoryContents dir)
 ```
@@ -60,6 +60,31 @@ absolutePaths <- fmap (map (dir </>)) (getDirectoryContents dir)
 So that's how I ended up writing:
 ```haskell
 files     <- map (dir </>) <$> getDirectoryContents dir
+```
+
+At the moment ```files``` is a list of filePaths containing everything, folders included. What if I need to exclude all the folders from this list? Sounds like a filter on a list? IT IS! But.
+But one function we can use as a filter is:
+```haskell
+doesFileExist :: FilePath -> IO Bool
+```
+(The operation doesFileExist returns True if the argument file exists and is not a directory, and False otherwise.)
+NOT Bool!! IO Bool!!! 
+So it's not exactly a filter, that has signature:
+```haskell
+filter :: (a -> Bool) -> [a] -> [a]
+```
+while we need:
+```haskell
+something :: (a -> IO Bool) -> [a] -> IO [a]
+```
+(that returns ```IO [a]``` because, you know, once in IO in IO forever). And infact if you enter this query "(a -> IO Bool) -> [a] -> IO [a]" in [Hoogle](https://www.haskell.org/hoogle/) the very first result is exactly:
+```haskell
+filterM :: Monad m => (a -> m Bool) -> [a] -> m [a]
+```
+YOU. ARE. MY. MAN!
+Hence:
+```haskell
+filesOnly <- filterM doesFileExist files
 ```
 (tbc)
 
